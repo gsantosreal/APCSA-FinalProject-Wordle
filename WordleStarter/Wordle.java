@@ -21,7 +21,13 @@ public class Wordle {
  */
 
     public void enterAction(String s) {
-        gw.showMessage("You have to implement this method.");
+        // gw.showMessage("You have to implement this method.");
+
+        for (int i = 0; i < s.length(); i++) {
+            String letter = s.substring(i, i+1);
+            gw.setSquareLetter(gw.getCurrentRow(), i, letter);
+        }
+        gw.setCurrentRow(gw.getCurrentRow() + 1);
     }
 
 /* Startup code */

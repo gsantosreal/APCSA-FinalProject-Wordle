@@ -22,17 +22,18 @@ public class Wordle {
 
     public void enterAction(String s) {
         // gw.showMessage("You have to implement this method.");
-        boolean run = isWord(s);
+        if (s.length() > 5) s = s.substring(0,5);
+        boolean run = isWord(s.toLowerCase());
 
-        if (run == false) {
-            if (s.length() < 5) gw.showMessage("Not enough letters");
-            else if (s.length() < 5) gw.showMessage("Not in word list");
-        } else {
+        if (run == true) {
             for (int i = 0; i < s.length(); i++) {
                 String letter = s.substring(i, i+1);
                 gw.setSquareLetter(gw.getCurrentRow(), i, letter);
             }
             gw.setCurrentRow(gw.getCurrentRow() + 1);
+        } else {
+            if (s.length() < 5) gw.showMessage("Not enough letters");
+            else gw.showMessage("Not in word list");
         }
     }
 

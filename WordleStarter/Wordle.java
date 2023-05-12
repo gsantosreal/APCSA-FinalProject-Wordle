@@ -11,6 +11,7 @@ import edu.willamette.cs1.wordle.WordleGWindow;
 public class Wordle {
 
     public void run() {
+        correctWord = (int) (5778 * Math.random());
         gw = new WordleGWindow();
         gw.addEnterListener((s) -> enterAction(s));
     }
@@ -48,11 +49,13 @@ public class Wordle {
 /* Startup code */
 
     public static void main(String[] args) {
+        System.out.println(WordleDictionary.FIVE_LETTER_WORDS.length);
         new Wordle().run();
     }
 
 /* Private instance variables */
 
     private WordleGWindow gw;
+    private int correctWord;
 
 }

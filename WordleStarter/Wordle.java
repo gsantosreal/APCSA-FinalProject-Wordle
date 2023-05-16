@@ -34,7 +34,7 @@ public class Wordle {
 
                 if (correctWord.indexOf(letter) < 0) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR); }
                 else if (correctWord.indexOf(letter) != i) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR); }
-                else { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); }
+                else { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); } //
             }
             gw.setCurrentRow(gw.getCurrentRow() + 1);
         } else {

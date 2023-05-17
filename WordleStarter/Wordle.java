@@ -11,6 +11,7 @@ import edu.willamette.cs1.wordle.WordleGWindow;
 public class Wordle {
 
     public void run() {
+        counter = 0;
         correctWord = WordleDictionary.FIVE_LETTER_WORDS[(int) (5778 * Math.random())];
         gw = new WordleGWindow();
         gw.addEnterListener((s) -> enterAction(s));
@@ -34,7 +35,7 @@ public class Wordle {
 
                 if (correctWord.indexOf(letter) < 0) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR); }
                 else if (correctWord.indexOf(letter) != i) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR); }
-                else { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); } //
+                else { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); } 
             }
             gw.setCurrentRow(gw.getCurrentRow() + 1);
         } else {
@@ -42,6 +43,7 @@ public class Wordle {
             else gw.showMessage("Not in word list");
         }
 
+        
         
     }
 
@@ -64,5 +66,6 @@ public class Wordle {
 
     private WordleGWindow gw;
     private String correctWord;
+    private static int counter;
 
 }

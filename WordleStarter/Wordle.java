@@ -28,6 +28,7 @@ public class Wordle {
         boolean run = isWord(word);
 
         if (run == true) {
+
             for (int i = 0; i < word.length(); i++) {
                 String letter = word.substring(i, i+1);
                 String correctLetter = correctWord.substring(i, i+1);
@@ -45,7 +46,10 @@ public class Wordle {
             if (gw.getCurrentRow() == 5) { 
                 gw.showMessage(correctWord.toUpperCase());
                 gw.setCurrentRow(gw.getCurrentRow() + 1);
-            } else { gw.setCurrentRow(gw.getCurrentRow() + 1); }
+            } else {
+                gw.setCurrentRow(gw.getCurrentRow() + 1);
+            }
+
         } else {
             if (s.length() < 5) gw.showMessage("Not enough letters");
             else gw.showMessage("Not in word list");

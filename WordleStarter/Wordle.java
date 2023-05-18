@@ -11,7 +11,6 @@ import edu.willamette.cs1.wordle.WordleGWindow;
 public class Wordle {
 
     public void run() {
-        counter = 0;
         correctWord = WordleDictionary.FIVE_LETTER_WORDS[(int) (5778 * Math.random())];
         gw = new WordleGWindow();
         gw.addEnterListener((s) -> enterAction(s));
@@ -31,13 +30,22 @@ public class Wordle {
         if (run == true) {
             for (int i = 0; i < word.length(); i++) {
                 String letter = word.substring(i, i+1);
+                String correctLetter = correctWord.substring(i, i+1);
                 gw.setSquareLetter(gw.getCurrentRow(), i, letter.toUpperCase());
 
-                if (correctWord.indexOf(letter) < 0) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR); }
-                else if (correctWord.indexOf(letter) != i) { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR); }
-                else { gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); } 
+                if (letter.equals(correctLetter)) { 
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); 
+                } else if (correctWord.indexOf(letter) < 0) { 
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR);
+                } else { 
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR);
+                } 
             }
-            gw.setCurrentRow(gw.getCurrentRow() + 1);
+
+            if (gw.getCurrentRow() == 5) { 
+                gw.showMessage(correctWord.toUpperCase());
+                gw.setCurrentRow(gw.getCurrentRow() + 1);
+            } else { gw.setCurrentRow(gw.getCurrentRow() + 1); }
         } else {
             if (s.length() < 5) gw.showMessage("Not enough letters");
             else gw.showMessage("Not in word list");
@@ -66,6 +74,5 @@ public class Wordle {
 
     private WordleGWindow gw;
     private String correctWord;
-    private static int counter;
 
 }

@@ -27,6 +27,10 @@ public class Wordle {
         String word = s.toLowerCase();
         boolean run = isWord(word);
 
+        if (s.equals(word.toUpperCase())) {
+
+        }
+
         if (run == true) {
 
             for (int i = 0; i < word.length(); i++) {
@@ -45,7 +49,8 @@ public class Wordle {
 
             if (gw.getCurrentRow() == 5) { 
                 gw.showMessage(correctWord.toUpperCase());
-                gw.setCurrentRow(gw.getCurrentRow() + 1);
+                
+                //gw.setCurrentRow(gw.getCurrentRow() + 1);
             } else {
                 gw.setCurrentRow(gw.getCurrentRow() + 1);
             }

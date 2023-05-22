@@ -11,6 +11,7 @@ import edu.willamette.cs1.wordle.WordleGWindow;
 public class Wordle {
 
     public void run() {
+        
         correctWord = WordleDictionary.FIVE_LETTER_WORDS[(int) (5778 * Math.random())];
         gw = new WordleGWindow();
         gw.addEnterListener((s) -> enterAction(s));
@@ -22,55 +23,23 @@ public class Wordle {
  */
 
     public void enterAction(String s) {
-        // gw.showMessage("You have to implement this method.");
-        if (s.length() > 5) s = s.substring(0,5);
-        String word = s.toLowerCase();
-        boolean run = isWord(word);
-
-        if (s.equals(word.toUpperCase())) {
-
+        checked = correctWord;
+        boolean isWord = false;
+        for (int i = 0; i < WordleDictionary.FIVE_LETTER_WORDS.length; i++) {
+            if(WordleDictionary.FIVE_LETTER_WORDS[i].equalsIgnoreCase(s)) isWord = true;
         }
-
-        if (run == true) {
-
-            for (int i = 0; i < word.length(); i++) {
-                String letter = word.substring(i, i+1);
-                String correctLetter = correctWord.substring(i, i+1);
-                gw.setSquareLetter(gw.getCurrentRow(), i, letter.toUpperCase());
-
-                if (letter.equals(correctLetter)) { 
-                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR); 
-                } else if (correctWord.indexOf(letter) < 0) { 
-                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR);
-                } else { 
-                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR);
-                } 
+        if (isWord) {
+            gw.showMessage("isWord is true!");
+            for (int i = 0; i < 6; i++) {
+                if (s.substring(i, i+1).equalsIgnoreCase(correctWord.substring(i, i+1))) {
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR);
+                    
+                    checked = checked.substring(0, i) + "!" + checked.substring(i+1);
+                }
             }
-
-            if (gw.getCurrentRow() == 5) { 
-                gw.showMessage(correctWord.toUpperCase());
-                
-                //gw.setCurrentRow(gw.getCurrentRow() + 1);
-            } else {
-                gw.setCurrentRow(gw.getCurrentRow() + 1);
-            }
-
-        } else {
-            if (s.length() < 5) gw.showMessage("Not enough letters");
-            else gw.showMessage("Not in word list");
         }
-
-        
-        
     }
 
-    private static boolean isWord(String s) {
-        String[] dictionary = WordleDictionary.FIVE_LETTER_WORDS;
-        for (int i = 0; i < dictionary.length; i++) {
-            if (s.equals(dictionary[i])) return true;
-        }
-        return false;
-    }
 
 /* Startup code */
 
@@ -83,5 +52,6 @@ public class Wordle {
 
     private WordleGWindow gw;
     private String correctWord;
+    private String checked;
 
 }

@@ -36,6 +36,9 @@ public class Wordle {
                     
                     checked = checked.substring(0, i) + "!" + checked.substring(i+1);
                 }
+                else if (correctWord.indexOf(s.substring(i,i+1)) >= 0 && checked.indexOf(s.substring(i,i+1)) >= 0) {
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR);
+                }
             }
         }
     }

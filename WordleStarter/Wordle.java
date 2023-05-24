@@ -23,7 +23,6 @@ public class Wordle {
  */
 
     public void enterAction(String s) {
-        checked = correctWord;
         boolean isWord = false;
         for (int i = 0; i < WordleDictionary.FIVE_LETTER_WORDS.length; i++) {
             if(WordleDictionary.FIVE_LETTER_WORDS[i].equalsIgnoreCase(s)) isWord = true;
@@ -35,14 +34,19 @@ public class Wordle {
                 
                 if (s.substring(i, i+1).equalsIgnoreCase(correctWord.substring(i, i+1))) {
                     gw.setSquareColor(r, i, WordleGWindow.CORRECT_COLOR);
+                    gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.CORRECT_COLOR);
                 }
                 
-                else if (correctWord.indexOf(s.substring(i,i+1)) < 0) {
+                else if (correctWord.toLowerCase().indexOf(s.substring(i,i+1).toLowerCase()) < 0) {
                     gw.setSquareColor(r, i, WordleGWindow.MISSING_COLOR);
+                    gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.MISSING_COLOR);
                 }
 
                 else {
                     gw.setSquareColor(r, i, WordleGWindow.PRESENT_COLOR);
+                    if (!(gw.getKeyColor(s.substring(i, i+1)).equals(WordleGWindow.CORRECT_COLOR))) {
+                        gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.PRESENT_COLOR);
+                    }
                 }
                 
             }
@@ -68,7 +72,6 @@ public class Wordle {
 
     private WordleGWindow gw;
     private String correctWord;
-    private String checked;
     private int r;
 
 }

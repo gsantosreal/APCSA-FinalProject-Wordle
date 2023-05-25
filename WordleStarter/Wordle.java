@@ -30,9 +30,6 @@ public class Wordle {
         }
         
         if (isWord) {
-            gw.showMessage("isWord is true!");
-
-            if (s.toLowerCase().equals(correctWord)) gw.setCurrentRow(7);
 
             for (int i = 0; i < 5; i++) {
                 
@@ -55,9 +52,18 @@ public class Wordle {
                 
             }
 
+            if (s.toLowerCase().equals(correctWord)) {
+                gw.showMessage("Great");
+                gw.setCurrentRow(7);
+            }
+
             r++;
             if (r < 6) 
                 gw.setCurrentRow(r);
+            else {
+                gw.showMessage(correctWord.toUpperCase());
+                gw.setCurrentRow(7);
+            }
         }
         else {
             gw.showMessage("Not in word list");

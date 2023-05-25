@@ -23,6 +23,7 @@ public class Wordle {
  */
 
     public void enterAction(String s) {
+        String word = correctWord;
         boolean isWord = false;
         for (int i = 0; i < WordleDictionary.FIVE_LETTER_WORDS.length; i++) {
             if(WordleDictionary.FIVE_LETTER_WORDS[i].equalsIgnoreCase(s)) isWord = true;
@@ -30,6 +31,9 @@ public class Wordle {
         
         if (isWord) {
             gw.showMessage("isWord is true!");
+
+            if (s.toLowerCase().equals(correctWord)) gw.setCurrentRow(7);
+
             for (int i = 0; i < 5; i++) {
                 
                 if (s.substring(i, i+1).equalsIgnoreCase(correctWord.substring(i, i+1))) {

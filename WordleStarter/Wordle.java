@@ -30,21 +30,23 @@ public class Wordle {
         }
         
         if (isWord) {
+            System.out.println(correctWord);
 
             for (int i = 0; i < 5; i++) {
                 
                 if (s.substring(i, i+1).equalsIgnoreCase(correctWord.substring(i, i+1))) {
-                    gw.setSquareColor(r, i, WordleGWindow.CORRECT_COLOR);
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.CORRECT_COLOR);
                     gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.CORRECT_COLOR);
                 }
                 
                 else if (correctWord.toLowerCase().indexOf(s.substring(i,i+1).toLowerCase()) < 0) {
-                    gw.setSquareColor(r, i, WordleGWindow.MISSING_COLOR);
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.MISSING_COLOR);
                     gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.MISSING_COLOR);
                 }
 
                 else {
-                    gw.setSquareColor(r, i, WordleGWindow.PRESENT_COLOR);
+                    
+                    gw.setSquareColor(gw.getCurrentRow(), i, WordleGWindow.PRESENT_COLOR);
                     if (!(gw.getKeyColor(s.substring(i, i+1)).equals(WordleGWindow.CORRECT_COLOR))) {
                         gw.setKeyColor(s.substring(i, i+ + 1), WordleGWindow.PRESENT_COLOR);
                     }

@@ -16,7 +16,6 @@ import javax.print.attribute.SetOfIntegerSyntax;
 public class Wordle {
 
     public void run() {
-        r = 0;
         correctWord =  WordleDictionary.FIVE_LETTER_WORDS[(int) (5778 * Math.random())];
         gw = new WordleGWindow();
         gw.addEnterListener((s) -> enterAction(s));
@@ -34,37 +33,14 @@ public class Wordle {
             if(WordleDictionary.FIVE_LETTER_WORDS[i].equalsIgnoreCase(s)) isWord = true;
         }
         
-        if (isWord) {
-            for (int i = 0; i < 5; i++) {
-                String let = s.substring(i, i+1);
-                int letCount = letCount(let, word);
+        if(isWord) {
+            // implement 
 
-                if (letCount != 0) {
-                    for (int j = 0; j < letCount; j++) {
-                        for (int k = 0; k < word.length(); k++) {
-                            if (let.equals(word.substring(k, k+1))) {
-                                gw.setSquareColor(gw.getCurrentRow(), i, gw.CORRECT_COLOR);
-                                gw.setKeyColor(let, gw.CORRECT_COLOR);
-                            } else {
-                                gw.setSquareColor(gw.getCurrentRow(), i, gw.PRESENT_COLOR);
-                                if (!(gw.getKeyColor(let).equals(gw.CORRECT_COLOR))) gw.setKeyColor(let, gw.PRESENT_COLOR);
-                            }
-                        }
-                    }
-                }
-            }
-
-            r++;
-            if (r < 6) 
-                gw.setCurrentRow(r);
-            else {
-                gw.showMessage(correctWord.toUpperCase());
-                gw.setCurrentRow(7);
-            }
-        }
-        else {
+            gw.setCurrentRow(gw.getCurrentRow() + 1);
+        } else {
             gw.showMessage("Not in word list");
         }
+
     }
 
     public static int letCount(String let, String word) {
@@ -86,7 +62,6 @@ public class Wordle {
 
     private WordleGWindow gw;
     private String correctWord;
-    private int r;
     String checkedString;
 
 }

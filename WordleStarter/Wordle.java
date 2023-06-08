@@ -6,6 +6,8 @@
  */
 
 
+import java.awt.Color;
+
 import edu.willamette.cs1.wordle.WordleDictionary;
 import edu.willamette.cs1.wordle.WordleGWindow;
 
@@ -32,7 +34,7 @@ public class Wordle {
     */
  
  
-     public void enterAction(String s) {
+    public void enterAction(String s) {
         int index;
         checked = word;
         boolean isWord = false;
@@ -72,6 +74,9 @@ public class Wordle {
                 }
             }
 
+            System.out.println(s + " " + checked);
+            System.out.println(gw.getSquareColor(gw.getCurrentRow(), 3) + " " + gw.getSquareColor(gw.getCurrentRow(), 4));
+
             // for (int i = 0; i < checked.length(); i++) {
             //     if (checked.substring(i, i+1).equalsIgnoreCase("1")) {
             //         gw.setSquareColor(gw.getCurrentRow(), i, gw.CORRECT_COLOR);
@@ -83,6 +88,32 @@ public class Wordle {
             // }
 
             if (checked.equals("11111")) {
+                gw.setKeyColor("Q", new Color(255,215,0));
+                gw.setKeyColor("W", new Color(255,215,0));
+                gw.setKeyColor("A", new Color(255,215,0));
+                gw.setKeyColor("S", new Color(255,215,0));
+                gw.setKeyColor("Z", new Color(255,215,0));
+                gw.setKeyColor("E", new Color(255,215,0));
+                gw.setKeyColor("D", new Color(255,215,0));
+                gw.setKeyColor("X", new Color(255,215,0));
+                gw.setKeyColor("R", new Color(255,215,0));
+                gw.setKeyColor("F", new Color(255,215,0));
+                gw.setKeyColor("C", new Color(255,215,0));
+                gw.setKeyColor("T", new Color(255,215,0));
+                gw.setKeyColor("Y", new Color(255,215,0));
+                gw.setKeyColor("G", new Color(255,215,0));
+                gw.setKeyColor("V", new Color(255,215,0));
+                gw.setKeyColor("U", new Color(255,215,0));
+                gw.setKeyColor("H", new Color(255,215,0));
+                gw.setKeyColor("B", new Color(255,215,0));
+                gw.setKeyColor("I", new Color(255,215,0));
+                gw.setKeyColor("J", new Color(255,215,0));
+                gw.setKeyColor("N", new Color(255,215,0));
+                gw.setKeyColor("O", new Color(255,215,0));
+                gw.setKeyColor("P", new Color(255,215,0));
+                gw.setKeyColor("K", new Color(255,215,0));
+                gw.setKeyColor("L", new Color(255,215,0));
+                gw.setKeyColor("M", new Color(255,215,0));
                 gw.showMessage("Great");                
                 endGame();
             }

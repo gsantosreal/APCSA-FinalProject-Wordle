@@ -38,8 +38,8 @@ public class Wordle {
         int index;
         checked = word;
         boolean isWord = false;
-        for (int i = 0; i < WordleDictionary.FIVE_LETTER_WORDS.length; i++) {
-            if ((WordleDictionary.FIVE_LETTER_WORDS[i].equalsIgnoreCase(s))) {
+        for (String legalWord: WordleDictionary.FIVE_LETTER_WORDS) {
+            if ((legalWord.equalsIgnoreCase(s))) {
                 isWord = true;
             }
         }
